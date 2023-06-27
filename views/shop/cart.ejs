@@ -1,0 +1,21 @@
+<%- include('../includes/head') %>
+<body>
+
+    <%- include('../includes/navigation') %>
+    <% if (products.length>0) { %>
+     <ul>
+        <% for(product of products) { %>
+            <li><%= product.productData.title %>  (<%= product.qty %>)</li>
+            <form method="post" action="delete-cart-item">
+                <input type="hidden" value="<%= product.productData.id %>" name="productId">
+                <input type="hidden" value="<%= product.productData.price %>" name="productPrice">
+                <button  class='btn' type="submit"> Delete</button>
+            </form>
+            
+        <% } %>
+     </ul>
+     <% } else { %>
+      <h1>No products in the cart</h1>
+    <% } %>
+    
+</body>

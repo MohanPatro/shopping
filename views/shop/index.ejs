@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../includes/head') %>
+</head>
+<body>
+    <%- include('../includes/navigation') %>
+    
+        <main>
+            
+                <div class="grid">
+            <% if (prod.length>0) { %>
+                <% for( product of prod) { %>
+                    <article class="card product-item">
+                        <header class="card_header">
+                            <h1 class="product_title"><%= product.title %></h1>
+                        </header>
+                        <div class="card_image">
+                            <img src="<%= product.imageUrl %>",alt="sorry">    
+                        </div>
+                        <div class="card_content">
+                            <h2 class="product_price">$<%= product.price %>
+                            </h2>    
+                            <p class="product_description"><%= product.description %></p>
+                        </div>
+                        <div class="card_action">
+                           
+                            <%- include('../includes/add-to-cart') %>
+                            </div>
+                    </article>
+
+                    <% } %>
+                
+                    <% } else { %>
+                        <h1>No products available</h1>
+                    <% } %>
+                </div>
+                
+             
+            
+        </main>
+
+        
+   
+</body>
+</html>
