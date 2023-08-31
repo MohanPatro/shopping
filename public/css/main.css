@@ -11,7 +11,7 @@ main{
 .main-header{
     width:100%;
     height:3.5rem;
-    background-color: rgb(238, 118, 20);
+    background-color:#960796;
 }
 .main-header_item-list{
     list-style: none;
@@ -37,7 +37,7 @@ main{
 .main-header_item a:hover,
 .main-header_item a:active,
 .main-header_item a.active{
-    color: rgb(7, 38, 212);
+    color: rgb(234, 203, 29);
 }
 
 .centered{

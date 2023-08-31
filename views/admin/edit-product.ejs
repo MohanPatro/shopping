@@ -30,10 +30,10 @@
                
             </div>
             <% if (editing) { %>
-             <input type="hidden" name="productId" value="<%= product.id %>">
+             <input type="hidden" name="productId" value="<%= product._id %>">
             <% } %>
            
-            <button class="btn" type="submit"><% if (editing) { %>
+            <button class="btn btn-warning btn-block ml-2" type="submit"><% if (editing) { %>
                 update Products
                 <% } else { %>
                  Add product

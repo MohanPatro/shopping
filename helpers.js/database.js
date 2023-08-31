@@ -1,23 +1,30 @@
-//data base system direct conectivity
-// const mysql=require('mysql2')
+const mongodb=require('mongodb')
+const MongoClient=mongodb.MongoClient
 
-// const pool=mysql.createConnection({
-//     host:'localhost',
-//     user:'root',
-//     database:'ecom',
-//     password:'AMma@143'
-// })
+let _db;
 
 
-// module.exports=pool.promise()
+const mongoConnect=callback=>{
+MongoClient.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3")
 
-
-//database conection using the sequelize orm
-
-const Sequelize=require('sequelize')
-
-const sequelize=new Sequelize('ecom','root','AMma@143',{
-    dialect:'mysql'
+.then(client=>{
+    console.log("successfully connected");
+    _db=client.db('mydb') 
+    callback() 
 })
+.catch(err=>{
+    console.log(err)
+    throw err;
+})
+}
 
-module.exports={Sequelize,sequelize}
+const getDb=()=>{
+    if(_db)
+    {
+        return _db;
+    }
+    throw "NO DATABASE FOUND"
+}
+
+exports.mongoConnect=mongoConnect;
+exports.getDb=getDb;

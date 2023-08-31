@@ -5,44 +5,53 @@
 </head>
 <body>
     <%- include('../includes/navigation') %>
+    <main class="cd__main">
+        <!-- Start DEMO HTML (Use the following code into your project)-->
+        <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+ <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+   <% if (prod.length>0) { %>
+     <% prod.forEach(product => { %>
+       <div class="col hp">
+         <div class="card h-100 shadow-sm">
+           <a href="#">
+             <img src="<%= product.imageUrl %>" class="card-img-top" alt="product.title" />
+           </a>
+   
+           <div class="label-top shadow-sm">
+             <a class="text-white" href="#"><%=product.title %></a>
+           </div>
+           <div class="card-body">
+             <div class="clearfix mb-3">
+               <span class="float-start badge rounded-pill bg-success">$<%= product.price %> </span>
+   
+               <span class="float-end"><a href="#" class="small text-muted text-uppercase aff-link">reviews</a></span>
+             </div>
+             <h5 class="card-title">
+               <a target="_blank" href="#"><%= product.description %></a>
+             </h5>
+   
+             <div class="d-grid gap-2 my-4" style="align-items: center; justify-content: center;">
+                
+                <form action="/admin/delete-product" method="post">
+                    <button class="btn btn-warning btn-block ml-2" type="submit"><a href="/admin/delete-product/<%= product._id %>">Delete</a></button>
+                    <button class="btn btn-warning btn-block ml-2"><a href="/admin/edit-product/<%= product._id %>?edit=true">Edit</a></button>
+                </form>
+             </div>
+             <div class="clearfix mb-1">
+   
+               <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
+   
+               <span class="float-end">
+                 <i class="far fa-heart" style="cursor: pointer"></i>
+   
+               </span>
+             </div>
+           </div>
+         </div>
+       </div>
+     <% }) %>
     
-        <main>
-            
-                <div class="grid">
-            <% if (prod.length>0) { %>
-                <% for( product of prod) { %>
-                    <article class="card product-item">
-                        <header class="card_header">
-                            <h1 class="product_title"><%= product.title %></h1>
-                        </header>
-                        <div class="card_image">
-                            <img src="<%= product.imageUrl %>",alt="sorry">    
-                        </div>
-                        <div class="card_content">
-                            <h2 class="product_price">$<%= product.price %>
-                            </h2>    
-                            <p class="product_description"><%= product.description %></p>
-                        </div>
-                        <div class="card_action">
-                            <button class="btn"><a href="/admin/edit-product/<%= product.id %>?edit=true">Edit</a></button>
-                            <form action="/admin/delete-product" method="post">
-                                <button class="btn" type="submit"><a href="/admin/delete-product/<%= product.id %>">Delete</a></button>
-                            </form>
-                            </div>
-                    </article>
-
-                    <% } %>
-                
-                    <% } else { %>
-                        <h1>No products available</h1>
-                    <% } %>
-                </div>
-                
-             
-            
-        </main>
-
-        
+   <% } %>
    
 </body>
 </html>

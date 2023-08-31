@@ -26,61 +26,11 @@
 button{
     font: inherit;
     border:1px solid #031750;
+    background-color: #f1c939;
     color:  #031750;
     border-radius: 3px;
     cursor: pointer;
 }
-
-button:hover,
-button:active{
-    background-color: #031750;
-    color: white;
-}
-
-.card_image img{
-    height:40%;
-    width: 100%;
-}
-.grid{
-    display: flex;
-    flex-wrap:wrap;
-    margin: 0;
-    background: #49ee93;
-    padding: 20px;
-    border-radius:10px ;
-}
-
-.card{
-    min-height:25rem;
-    width: 15rem;
-    background-color: grey;
-    padding: 10px;
-    margin: auto;
-    margin-bottom: 10px;
-    font: inherit;
-    background:rgba(238, 63, 10, 0.25);
-    backdrop-filter:blur(20px);
-    border-radius: 5px;
-    align-items: center;
-}
-
-.card_content{
-    word-wrap: break-word;
-    align-items: center;
-}
-
-.card_action,
-.card_action a{
-    display: flex;
+a{
     text-decoration: none;
-    color:rgb(2, 2, 77);
-
-}
-
-.card_action .btn{
-    margin:5px;
-}
-
-.card_action a:hover{
-    color: white;
 }

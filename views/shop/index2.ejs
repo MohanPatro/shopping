@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+   <body>
+    
+      <%- include('../includes/navigation') %>
+      <main class="cd__main">
+
+         <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+  <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+    <% if (prod.length>0) { %>
+      <% prod.forEach(product => { %>
+        <div class="col hp">
+          <div class="card h-100 shadow-sm">
+            <a href="#">
+              <img src="<%= product.imageUrl %>" class="card-img-top" alt="product.title" />
+            </a>
+    
+            <div class="label-top shadow-sm">
+              <a class="text-white" href="#"><%=product.title %></a>
+            </div>
+            <div class="card-body">
+              <div class="clearfix mb-3">
+                <span class="float-start badge rounded-pill bg-success"><%= product.price %> </span>
+    
+                <span class="float-end"><a href="#" class="small text-muted text-uppercase aff-link">reviews</a></span>
+              </div>
+              <h5 class="card-title">
+                <a target="_blank" href="#"><%= product.description %></a>
+              </h5>
+    
+              <div class="d-grid gap-2 my-4">
+                <form method="post" action="/cart">
+                  <button class="btn btn-warning bold-btn" style="width: 100%;"> Add to cart</button>
+                  <input type="hidden" name="productId" value="<%=product._id%>">
+              </form>
+    
+              </div>
+              <div class="clearfix mb-1">
+    
+                <span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>
+    
+                <span class="float-end">
+                  <i class="far fa-heart" style="cursor: pointer"></i>
+    
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+     
+    <% } %>
+    
+    
+
+   </body>
+</html>

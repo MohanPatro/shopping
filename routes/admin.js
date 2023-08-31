@@ -3,21 +3,31 @@ const path=require('path')
 const rootdir=require('../helpers.js/path')
 const router=express.Router();
 
-const adminController=require('../controllers/admin')
+// const adminController=require('../controllers/admin')
 
-router.get('/add-product',adminController.getAddProducts)
+const getAddProducts=require('../controllers/admin/getAddProducts')
+const postProducts=require('../controllers/admin/postProducts')
+const getEditProducts=require('../controllers/admin/getEditProducts')
+const getProducts=require('../controllers/admin/getProducts')
 
-router.post('/add-product',adminController.postProducts)
+const postEditProducts=require('../controllers/admin/postEditProducts')
+
+const deleteProduct=require('../controllers/admin/deleteProduct')
 
 
-router.get('/edit-product/:productId',adminController.getEditProducts)
+router.get('/add-product',getAddProducts.getAddProducts)
+
+router.post('/add-product',postProducts.postProducts)
+
+router.get('/edit-product/:productId',getEditProducts.getEditProducts)
 
 
-router.get('/products',adminController.getProducts)
 
-router.post('/edit-product',adminController.postEditProducts)
+router.get('/products',getProducts.getProducts)
 
-router.get('/delete-product/:productId',adminController.deleteProduct)
+router.post('/edit-product',postEditProducts.postEditProducts)
+
+router.get('/delete-product/:productId',deleteProduct.deleteProduct)
 
 module.exports=router
 

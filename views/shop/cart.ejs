@@ -1,21 +1,54 @@
-<%- include('../includes/head') %>
-<body>
+<html>
+    <head>
+        <%- include('../includes/head') %>
 
-    <%- include('../includes/navigation') %>
-    <% if (products.length>0) { %>
-     <ul>
-        <% for(product of products) { %>
-            <li><%= product.productData.title %>  (<%= product.qty %>)</li>
-            <form method="post" action="delete-cart-item">
-                <input type="hidden" value="<%= product.productData.id %>" name="productId">
-                <input type="hidden" value="<%= product.productData.price %>" name="productPrice">
-                <button  class='btn' type="submit"> Delete</button>
-            </form>
-            
-        <% } %>
-     </ul>
-     <% } else { %>
-      <h1>No products in the cart</h1>
-    <% } %>
+    </head>
     
-</body>
+    <body>
+    
+        <%- include('../includes/navigation') %>
+        <div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div class="p-2">
+                        <h4>Shopping cart</h4>
+                        <div class="d-flex flex-row align-items-center pull-right"><span class="mr-1">Sort by:</span><span class="mr-1 font-weight-bold">Price</span><i class="fa fa-angle-down"></i></div>
+                    </div>
+
+                    <% if (products.length>0) { %>
+                        <% products.forEach(product => { %>
+                            <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
+                                <div class="mr-1"><img class="rounded" src="<%= product.imageUrl %>" width="70"></div>
+                                <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold"><%= product.title %></span>
+                                   
+                                </div>
+                                <div class="d-flex flex-row align-items-center qty">
+                                    <h5 class="text-grey mt-1 mr-1 ml-1"><%= product.quantity %></h5></div>
+                                <div>
+                                    <h5 class="text-grey">$<%= product.price %></h5>
+                                </div>
+                                <!-- <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div> -->
+                                <form method="post" action="delete-cart-item">
+                                    <input type="hidden" value="<%= product._id %>" name="productId">
+                                    <input type="hidden" value="<%= product.price %>" name="productPrice">
+                                    <button  class='btn btn-warning btn-block ml-2 pay-button' type="submit"> Delete</button>
+                                </form>
+                            </div>
+                           
+                        <% }) %>
+                        <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><input type="text" class="form-control border-0 gift-card" placeholder="discount code/gift card"><button class="btn btn-outline-warning btn-sm ml-2" type="button">Apply</button></div>
+                    <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded">
+                        
+                        <form action="/create-order" method="post">
+                            <button class="btn btn-warning btn-block ml-2" type="submit">Order items</button>
+                        </form>
+                        </div>
+                     
+                    <% } %>
+                  
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
